@@ -1,7 +1,5 @@
 {
-    "host"     : "15.164.216.57",
-    "user"     : "psc",
-    "password" : "mysql", 
-    "database" : "lms_module",
-    "stream": "stream"
+    "user": "university",
+    "password": "comp322",
+    "connectString":"localhost/orcl"
 }
