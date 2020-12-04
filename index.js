@@ -5,12 +5,14 @@ var bodyParser = require('body-parser');
 
 var test = require("./test");
 var rating = require("./rating");
+var average_rating = require("./average_rating");
 
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
 const rating_instance = new rating();
+const average_rating_instance = new average_rating();
 /*
 const test_instance = new test();
 async function run() {
@@ -144,8 +146,12 @@ app.get("/", async (req,res)=>{
 });
 
 app.get("/rating", (req, res)=>{
-  rating_instance.execute(req.query.id, oracledb, dbConfig, res);
-})
+  rating_instance.execute(req.query.account_id, oracledb, dbConfig, res);
+});
+
+app.get("/average_rating", (req, res)=>{
+  average_rating_instance.execute(req.query.video_id, oracledb, dbConfig, res);
+});
 
 app.listen(5000, "0.0.0.0", function(){
     console.log("server is running.. in 5000");
