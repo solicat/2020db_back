@@ -4,11 +4,13 @@ const dbConfig = require('./db_config.json');
 var bodyParser = require('body-parser');
 
 var test = require("./test");
-
+var rating = require("./rating");
 
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
+
+const rating_instance = new rating();
 /*
 const test_instance = new test();
 async function run() {
@@ -140,6 +142,10 @@ app.get("/", async (req,res)=>{
 
    res.json(result.rows);
 });
+
+app.get("/rating", (req, res)=>{
+  rating_instance.execute(req.query.id, oracledb, dbConfig, res);
+})
 
 app.listen(5000, "0.0.0.0", function(){
     console.log("server is running.. in 5000");

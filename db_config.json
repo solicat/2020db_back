@@ -1,5 +1,5 @@
 {
-    "user": "university",
-    "password": "comp322",
+    "user": "knuMovie",
+    "password": "oracle",
     "connectString":"localhost/orcl"
 }
