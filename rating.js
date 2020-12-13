@@ -33,7 +33,7 @@ class Rating{
             binds = [account_id];
             result = await connection.execute(sql, binds, options);
           }
-          res.status(400).json(result.rows);
+          res.json(result.rows);
 
         } catch(err) {
           console.log(err.toString())

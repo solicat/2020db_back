@@ -4,6 +4,8 @@ class Insert_video{
         try {
           let sql, binds, options, result, connection;
 
+          dict['type'] = dict.video_type;
+
           connection = await oracledb.getConnection(dbConfig);
           options = {
             outFormat: oracledb.OUT_FORMAT_OBJECT,   // query result format
@@ -14,11 +16,11 @@ class Insert_video{
           sql =`SELECT permission FROM v_account WHERE account_id = :id`;
           binds = [dict.account_id];
           result = await connection.execute(sql, binds, options);
-
+          console.log(result);
           if(result.rows[0]["PERMISSION"] == 'admin'){
             console.log("admin");
           }else{
-            throw new ERROR("not allowed action");
+            throw new Error("not allowed action");
           }
 
 
@@ -156,9 +158,9 @@ class Insert_video{
             result = await connection.execute(sql, binds, options);
             console.log(result);
           }else{
-            throw new ERROR("such type not exist, " + dict.type);
+            throw new Error("such type not exist, " + dict.type);
           }
-          res.status(400).json(result);
+          res.json(result);
 
         } catch(err) {
           console.log(err.toString())
