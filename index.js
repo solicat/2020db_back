@@ -15,6 +15,12 @@ var login = require("./login");
 var join = require("./join");
 var account_delete = require("./account_delete");
 var account_update = require("./account_update");
+var view_all_movie = require("./all_movie");
+var view_all_episode = require("./all_episode");
+var view_all_knu_original = require("./all_knuoriginal");
+var search_result = require("./search_result");
+var best = require("./best");
+var rate = require("./rate");
 var cors = require("cors");
 var app = express();
 app.use(bodyParser.json());
@@ -32,6 +38,12 @@ const login_instance = new login();
 const join_instance = new join();
 const account_delete_instance = new account_delete();
 const account_update_instance = new account_update();
+const view_all_movie_instance = new view_all_movie();
+const view_all_episode_instance = new view_all_episode();
+const view_all_knu_original_instance = new view_all_knu_original();
+const search_result_instance = new search_result();
+const best_instance = new best();
+const rate_instance = new rate();
 oracledb.autoCommit = true;
 /*
     //
@@ -134,6 +146,30 @@ app.get("/account_delete", (req, res) => {
 
 app.get("/account_update", (req, res) => {
   account_update_instance.execute(req.query, oracledb, dbConfig, res);
+})
+
+app.get("/view_all_movie", (req, res) => {
+  view_all_movie_instance.execute(req.query, oracledb, dbConfig, res);
+})
+
+app.get("/view_all_episode", (req, res) => {
+  view_all_episode_instance.execute(req.query, oracledb, dbConfig, res);
+})
+
+app.get("/view_all_knu_original", (req, res) => {
+  view_all_knu_original_instance.execute(req.query, oracledb, dbConfig, res);
+})
+
+app.get("/search_result", (req, res) => {
+  search_result_instance.execute(req.query, oracledb, dbConfig, res);
+})
+
+app.get("/best", (req, res) => {
+  best_instance.execute(req.query, oracledb, dbConfig, res);
+})
+
+app.get("/rate", (req, res) => {
+  rate_instance.execute(req.query, oracledb, dbConfig, res);
 })
 
 app.listen(5000, "0.0.0.0", function(){

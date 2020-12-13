@@ -21,7 +21,7 @@ class Average_rating{
           console.log("Query results: ");
           console.dir(result.rows, { depth: null });
 
-          res.status(400).json(result.rows);
+          res.json(result.rows);
 
         } catch(err) {
           console.log(err.toString())
