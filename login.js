@@ -23,7 +23,7 @@ class Login{
 
         } catch(err) {
           console.log(err.toString())
-          res.status(404).json(err.toString())
+          res.json(err.toString())
         }
     }
 

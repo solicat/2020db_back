@@ -21,6 +21,7 @@ var view_all_knu_original = require("./all_knuoriginal");
 var search_result = require("./search_result");
 var best = require("./best");
 var rate = require("./rate");
+var recommend = require("./recommend");
 var cors = require("cors");
 var app = express();
 app.use(bodyParser.json());
@@ -44,6 +45,7 @@ const view_all_knu_original_instance = new view_all_knu_original();
 const search_result_instance = new search_result();
 const best_instance = new best();
 const rate_instance = new rate();
+const recommend_instance = new recommend();
 oracledb.autoCommit = true;
 /*
     //
@@ -170,6 +172,10 @@ app.get("/best", (req, res) => {
 
 app.get("/rate", (req, res) => {
   rate_instance.execute(req.query, oracledb, dbConfig, res);
+})
+
+app.get("/recommend", (req, res) => {
+  recommend_instance.execute(req.query, oracledb, dbConfig, res);
 })
 
 app.listen(5000, "0.0.0.0", function(){
